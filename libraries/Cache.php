@@ -75,7 +75,7 @@ class Cache
   
   private function _connect_memcache()
   {
-    $servers = $this->ci->config->item('memcache_servers')
+    $servers = $this->ci->config->item('memcache_servers');
     if(!empty($servers))
     {
       // must turn off error reporting.
