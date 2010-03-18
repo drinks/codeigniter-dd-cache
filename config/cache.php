@@ -16,7 +16,7 @@ $config['memcache_servers'][] = array(
   );
 */
 
-// default expiration for disk cache (same as memcached default, 10 mins)
+// default expiration for cache (10 mins)
 $config['cache_default_expires'] = 600;
 
 ?>
