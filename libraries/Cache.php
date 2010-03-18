@@ -58,7 +58,7 @@ class Cache
   
   private function _connect()
   {
-    switch($this->config['cache_type'])
+    switch($this->ci->config->item('cache_type'))
     {
       case 'memcache':
         if(function_exists('memcache_connect'))
@@ -75,7 +75,7 @@ class Cache
   
   private function _connect_memcache()
   {
-    if(!empty($this->config['memcache_servers']))
+    if(!empty($this->ci->config->item('memcache_servers')))
     {
       // must turn off error reporting.
       // so memcache can die silently if
@@ -87,7 +87,7 @@ class Cache
       ini_set('display_errors', "Off");
       ini_set('error_reporting', 0);
 
-      foreach ( $this->config['memcache_servers'] as $server )
+      foreach ( $this->ci->config->item('memcache_servers') as $server )
       {
         if ( $this->memcache->addServer($server['host'], $server['port']) )
         {
@@ -195,7 +195,7 @@ class Cache
       $this->key = $key;
     }
     
-    switch($this->config['cache_type'])
+    switch($this->ci->config->item('cache_type'))
     {
       case 'memcache':
       
@@ -275,7 +275,7 @@ class Cache
     $data = @serialize($this->contents);
     
     // Write the cache
-    switch ( $this->config['cache_type'] )
+    switch ( $this->ci->config->item('cache_type') )
     {
       case 'memcache':
         if ( empty($this->connected_servers) )
@@ -310,7 +310,7 @@ class Cache
   {
     if ($key !== NULL) $this->key = $key;
     
-    switch ( $this->config['cache_type'] )
+    switch ( $this->ci->config->item('cache_type') )
     {
       case 'memcache':
         if ( empty($this->connected_servers) )
